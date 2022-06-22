@@ -22,7 +22,7 @@ public class UI {
         } else {
             System.out.print(chessPiece);
         }
-        
+
         System.out.print(" ");
     }
 
