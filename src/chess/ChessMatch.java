@@ -31,10 +31,15 @@ public class ChessMatch {
         return mat;
     }
 
+    private void placeNewPiece(char column, int row, ChessPiece piece) {
+        board.placePiece(piece, new ChessPosition(column, row).toPosition());
+    }
+
     private void initialSetup() {
-        getBoard().placePiece(new Rook(getBoard(), Color.WHITE), new Position(0, 0));
-        getBoard().placePiece(new King(getBoard(), Color.WHITE), new Position(0, 1));
-        getBoard().placePiece(new Rook(getBoard(), Color.WHITE), new Position(0, 2));
-        getBoard().placePiece(new King(getBoard(), Color.WHITE), new Position(0, 3));
+        placeNewPiece('a', 8, new Rook(getBoard(), Color.WHITE));
+        placeNewPiece('b', 8, new King(getBoard(), Color.BLACK));
+        placeNewPiece('c', 8, new King(getBoard(), Color.BLACK));
+        placeNewPiece('d', 8, new King(getBoard(), Color.BLACK));
+
     }
 }
