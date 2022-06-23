@@ -38,7 +38,7 @@ public class ChessMatch {
     private void initialSetup() {
         placeNewPiece('a', 8, new Rook(getBoard(), Color.WHITE));
         placeNewPiece('b', 8, new King(getBoard(), Color.BLACK));
-        placeNewPiece('c', 8, new King(getBoard(), Color.BLACK));
+        placeNewPiece('c', 8, new King(getBoard(), Color.WHITE));
         placeNewPiece('d', 8, new King(getBoard(), Color.BLACK));
 
     }
