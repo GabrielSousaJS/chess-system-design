@@ -32,6 +32,14 @@ public class ChessMatch {
         return mat;
     }
 
+    public boolean[][] possibleMoves(ChessPosition sourcePosition) {
+        Position source = sourcePosition.toPosition();
+
+        validateSourcePosition(source);
+
+        return getBoard().piece(source).possibleMoves();
+    }
+
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();
@@ -39,7 +47,7 @@ public class ChessMatch {
         validateSourcePosition(source);
         validateTargetPosition(source, target);
 
-        Piece capturedPiece = (ChessPiece)makeMove(source, target);
+        Piece capturedPiece = makeMove(source, target);
 
         return (ChessPiece)capturedPiece;
     }
@@ -55,7 +63,7 @@ public class ChessMatch {
 
     private void validateSourcePosition(Position position) {
         if (!getBoard().thereIsAPiece(position)) {
-            throw new ChessException("This position does not exists");
+            throw new ChessException("There is no piece on source position");
         }
 
         if (!getBoard().piece(position).isThereAnyPossibleMove()) {
@@ -70,14 +78,14 @@ public class ChessMatch {
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {
-        board.placePiece(piece, new ChessPosition(column, row).toPosition());
+        getBoard().placePiece(piece, new ChessPosition(column, row).toPosition());
     }
 
     private void initialSetup() {
-        placeNewPiece('a', 8, new Rook(getBoard(), Color.WHITE));
         placeNewPiece('b', 8, new King(getBoard(), Color.BLACK));
         placeNewPiece('c', 8, new King(getBoard(), Color.WHITE));
         placeNewPiece('d', 8, new King(getBoard(), Color.BLACK));
+        placeNewPiece('a', 1, new Rook(getBoard(), Color.BLACK));
 
     }
 }
